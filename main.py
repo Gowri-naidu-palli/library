@@ -59,7 +59,7 @@ def Enter_details():
 
 
 def add_members():
-    name = input("Enter your name: ").strip()
+    name = input("Enter your name is : ").strip()
 
     if not name:
         print("Please enter a valid name.")
