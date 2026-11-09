@@ -42,9 +42,9 @@ print("9. Exit")
 
 def Enter_details():
     book={
-        "Book_id":int(input("Enter your Book id:")),
-        "Book_Name":(input("Enter Book Name:")),
-        "Book_Author":(input("Enter Author Name:"))
+        "Book_id":int(input("Enter your Book id is:")),
+        "Book_Name":(input("Enter Book Name is:")),
+        "Book_Author":(input("Enter Author Name is:"))
 }
     details.append(book)
     db_book = Book(
