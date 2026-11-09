@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Management Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <aside class="sidebar">
+        <h2>📚 LibraryDesk</h2>
+        <button onclick="showSection('dashboard')">Dashboard</button>
+        <button onclick="showSection('books')">Books</button>
+        <button onclick="showSection('members')">Members</button>
+        <button onclick="showSection('issues')">Issue / Return</button>
+    </aside>
+
+    <main class="main">
+        <header>
+            <div>
+                <h1>Library Management</h1>
+                <p>Manage your library in one place</p>
+            </div>
+            <button class="refresh" onclick="loadAll()">Refresh Data</button>
+        </header>
+
+        <section id="dashboard" class="section">
+            <div class="stats">
+                <div class="stat-card">
+                    <p>Total Books</p>
+                    <h2 id="totalBooks">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Total Members</p>
+                    <h2 id="totalMembers">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Issued Books</p>
+                    <h2 id="totalIssues">0</h2>
+                </div>
+                <div class="stat-card">
+                    <p>Available Books</p>
+                    <h2 id="availableBooks">0</h2>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2>Recent Books</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recentBooks"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="books" class="section hidden">
+            <div class="panel">
+                <h2 id="bookFormTitle">Add Book</h2>
+                <form id="bookForm">
+                    <input type="hidden" id="bookId">
+                    <input id="bookTitle" placeholder="Book title" required>
+                    <input id="bookAuthor" placeholder="Author name" required>
+                    <button type="submit">Save Book</button>
+                    <button type="button" class="secondary" onclick="resetBookForm()">Clear</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h2>All Books</h2>
+                <input id="bookSearch" placeholder="Search by title, author, or ID">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Author</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="booksTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="members" class="section hidden">
+            <div class="panel">
+                <h2 id="memberFormTitle">Add Member</h2>
+                <form id="memberForm">
+                    <input type="hidden" id="memberId">
+                    <input id="memberName" placeholder="Member name" required>
+                    <button type="submit">Save Member</button>
+                    <button type="button" class="secondary" onclick="resetMemberForm()">Clear</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h2>All Members</h2>
+                <input id="memberSearch" placeholder="Search members">
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <section id="issues" class="section hidden">
+            <div class="panel">
+                <h2>Issue a Book</h2>
+                <form id="issueForm">
+                    <input id="issueMemberId" type="number" min="1" placeholder="Member ID" required>
+                    <input id="issueBookId" type="number" min="1" placeholder="Book ID" required>
+                    <button type="submit">Issue Book</button>
+                </form>
+            </div>
+
+            <div class="panel">
+                <h2>Issued Books</h2>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Issue ID</th>
+                                <th>Member ID</th>
+                                <th>Book ID</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="issuesTable"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <p id="message" role="status"></p>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
